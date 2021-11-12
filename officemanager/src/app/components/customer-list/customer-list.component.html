@@ -1,0 +1,51 @@
+<div class="list row">
+    <div class="col-md-8">
+
+    </div>
+    <div class="col-md-6">
+      <h4>Customers List</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let customer of customers; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveCustomer(customer, i)"
+        >
+          {{ customer.name }}
+        </li>
+      </ul>
+  
+      <button class="m-3 btn btn-sm btn-danger" (click)="removeAllCustomers()">
+        Remove All
+      </button>
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="currentCustomer.id">
+        <h4>Customer</h4>
+        <div>
+          <label><strong>Name:</strong></label> {{ currentCustomer.name }}
+        </div>
+        <div>
+          <label><strong>Phone:</strong></label>
+          {{ currentCustomer.phone  }}
+        </div>
+        <div>
+            <label><strong>Email:</strong></label>
+            {{ currentCustomer.email  }}
+        </div>
+        <div>
+            <label><strong>Physical Address:</strong></label>
+            {{ currentCustomer.physical_address  }}
+        </div>
+  
+        <a class="badge badge-warning" routerLink="/customers/{{ currentCustomer.id }}">
+          Edit
+        </a>
+      </div>
+  
+      <div *ngIf="!currentCustomer">
+        <br />
+        <p>Please click on a Tutorial...</p>
+      </div>
+    </div>
+  </div>
